@@ -1,0 +1,89 @@
+:root {
+  /* Color Palette */
+  --primary-red: #800000; /* Deep Academic Red */
+  --primary-red-hover: #600000;
+  --bg-white: #FFFFFF;    /* Clean White */
+  --accent-brown: #5D4037; /* Earthy Brown */
+  --accent-brown-light: #8D6E63;
+  --text-main: #212121;
+  --text-secondary: #5D4037; /* Using brown for secondary text as requested/implied */
+  --text-white: #FFFFFF;
+  --border-color: #E0E0E0;
+
+  /* Spacing & Layout */
+  --container-width: 1200px;
+  --header-height: 80px;
+  --border-radius: 8px;
+  
+  /* Typography */
+  --font-sans: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-white);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+/* Utilities */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-red);
+  color: var(--text-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-red-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--accent-brown);
+  color: var(--accent-brown);
+}
+
+.btn-outline:hover {
+  background-color: var(--accent-brown);
+  color: var(--text-white);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  text-align: center;
+}
