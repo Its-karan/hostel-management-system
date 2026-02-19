@@ -5,7 +5,7 @@ import {
     Camera, User, Utensils, Droplets, AlertCircle, LogOut, Menu, X, Hotel,
     CheckCircle2, XCircle, MessageSquare, Briefcase, FileText, Download, Edit2, Check
 } from 'lucide-react';
-import RoomAllocation from './RoomAllocation';
+
 
 const StudentDashboard = () => {
     const [activeTab, setActiveTab] = useState('profile');
@@ -186,47 +186,67 @@ const StudentDashboard = () => {
         { id: 'profile', label: 'My Profile', icon: <User size={20} /> },
         { id: 'mess', label: 'Todays Mess', icon: <Utensils size={20} /> },
         { id: 'water', label: 'Water Status', icon: <Droplets size={20} /> },
-        { id: 'allocation', label: 'Room Allocation', icon: <Hotel size={20} /> },
         { id: 'complaint', label: 'Complaint', icon: <AlertCircle size={20} /> },
     ];
 
     return (
-        <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
+        <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-main)' }}>
             {/* Mobile Sidebar Toggle */}
             <button
-                className="md:hidden"
+                className="mobile-only"
                 style={{
                     position: 'fixed',
                     top: '1rem',
                     left: '1rem',
                     zIndex: 1000,
-                    padding: '0.5rem',
+                    padding: '0.6rem',
                     backgroundColor: 'var(--primary-red)',
                     color: 'white',
-                    borderRadius: '4px',
+                    borderRadius: '8px',
                     border: 'none',
-                    display: 'none' // Hidden by default, show via media query if responsive CSS exists
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
                 }}
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             >
-                {isSidebarOpen ? <X /> : <Menu />}
+                {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
+            {/* Sidebar Overlay for Mobile */}
+            {isSidebarOpen && (
+                <div
+                    className="mobile-only"
+                    style={{
+                        position: 'fixed',
+                        inset: 0,
+                        backgroundColor: 'rgba(0,0,0,0.5)',
+                        zIndex: 998
+                    }}
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
+
             {/* Sidebar */}
-            <aside style={{
-                width: '280px',
-                backgroundColor: 'white',
-                borderRight: '1px solid #e0e0e0',
-                display: 'flex',
-                flexDirection: 'column',
-                position: 'sticky',
-                top: 0,
-                height: '100vh',
-                boxShadow: '4px 0 24px rgba(0,0,0,0.02)'
-            }}>
+            <aside
+                className={isSidebarOpen ? 'sidebar-open' : ''}
+                style={{
+                    width: '280px',
+                    backgroundColor: 'var(--bg-sidebar)',
+                    borderRight: '1px solid var(--border-color)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    height: '100vh',
+                    boxShadow: '4px 0 24px rgba(0,0,0,0.02)',
+                    zIndex: 999,
+                    transition: 'transform 0.3s ease-in-out',
+                    transform: window.innerWidth <= 768 && !isSidebarOpen ? 'translateX(-100%)' : 'translateX(0)'
+                }}
+            >
                 <div style={{
                     padding: '2rem',
-                    borderBottom: '1px solid #f0f0f0',
+                    borderBottom: '1px solid var(--border-color)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.75rem'
@@ -258,8 +278,8 @@ const StudentDashboard = () => {
                                         gap: '1rem',
                                         padding: '1rem',
                                         border: 'none',
-                                        backgroundColor: activeTab === item.id ? '#fff1f1' : 'transparent',
-                                        color: activeTab === item.id ? 'var(--primary-red)' : '#64748b',
+                                        backgroundColor: activeTab === item.id ? 'var(--bg-hover)' : 'transparent',
+                                        color: activeTab === item.id ? 'var(--primary-red)' : 'var(--text-muted)',
                                         borderRadius: '8px',
                                         cursor: 'pointer',
                                         fontWeight: activeTab === item.id ? '600' : '500',
@@ -275,23 +295,23 @@ const StudentDashboard = () => {
                     </ul>
                 </nav>
 
-                <div style={{ padding: '1.5rem', borderTop: '1px solid #f0f0f0' }}>
+                <div style={{ padding: '1.5rem', borderTop: '1px solid var(--border-color)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
                         <div style={{
                             width: '40px',
                             height: '40px',
                             borderRadius: '50%',
-                            backgroundColor: '#e2e8f0',
+                            backgroundColor: 'var(--bg-main)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            color: '#64748b'
+                            color: 'var(--text-muted)'
                         }}>
                             <User size={20} />
                         </div>
                         <div>
-                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>{currentUser.displayName}</div>
-                            <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Student</div>
+                            <div style={{ fontWeight: '600', fontSize: '0.9rem', color: 'var(--text-main)' }}>{currentUser.displayName}</div>
+                            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Student</div>
                         </div>
                     </div>
                     <button
@@ -302,10 +322,10 @@ const StudentDashboard = () => {
                             alignItems: 'center',
                             gap: '0.75rem',
                             padding: '0.75rem',
-                            border: '1px solid #e2e8f0',
+                            border: '1px solid var(--border-color)',
                             borderRadius: '6px',
-                            backgroundColor: 'white',
-                            color: '#64748b',
+                            backgroundColor: 'var(--bg-card)',
+                            color: 'var(--text-muted)',
                             cursor: 'pointer',
                             fontSize: '0.9rem',
                             transition: 'all 0.2s'
@@ -317,16 +337,23 @@ const StudentDashboard = () => {
             </aside>
 
             {/* Main Content Area */}
-            <main style={{ flex: 1, padding: '2rem', overflowY: 'auto' }}>
+            <main style={{
+                flex: 1,
+                padding: window.innerWidth <= 768 ? '1rem' : '2rem',
+                marginLeft: window.innerWidth > 768 ? '280px' : '0',
+                width: '100%',
+                marginTop: window.innerWidth <= 768 ? '3rem' : '0',
+                overflowY: 'auto'
+            }}>
                 <header style={{ marginBottom: '2rem' }}>
                     <h1 style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--text-main)' }}>
                         {menuItems.find(i => i.id === activeTab)?.label}
                     </h1>
-                    <p style={{ color: '#64748b' }}>Welcome back, {currentUser.displayName}</p>
+                    <p style={{ color: 'var(--text-muted)' }}>Welcome back, {currentUser.displayName}</p>
                 </header>
 
                 <div style={{
-                    backgroundColor: 'white',
+                    backgroundColor: 'var(--bg-card)',
                     borderRadius: '16px',
                     padding: '2rem',
                     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
@@ -338,10 +365,10 @@ const StudentDashboard = () => {
                             {cooldownParams.isCooldown ? (
                                 <div style={{
                                     padding: '3rem',
-                                    border: '2px dashed #cbd5e1',
+                                    border: '2px dashed var(--border-color)',
                                     borderRadius: '16px',
-                                    backgroundColor: '#f8fafc',
-                                    color: '#64748b'
+                                    backgroundColor: 'var(--bg-main)',
+                                    color: 'var(--text-muted)'
                                 }}>
                                     <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⏳</div>
                                     <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '0.5rem' }}>Cooldown Active</h3>
@@ -360,9 +387,9 @@ const StudentDashboard = () => {
                                             onClick={() => setAttendanceType('entry')}
                                             style={{
                                                 padding: '3rem 2rem',
-                                                border: '2px solid #e2e8f0',
+                                                border: '2px solid var(--border-color)',
                                                 borderRadius: '16px',
-                                                backgroundColor: 'white',
+                                                backgroundColor: 'var(--bg-card)',
                                                 cursor: 'pointer',
                                                 transition: 'all 0.2s',
                                                 textAlign: 'center',
@@ -394,9 +421,9 @@ const StudentDashboard = () => {
                                             onClick={() => setAttendanceType('exit')}
                                             style={{
                                                 padding: '3rem 2rem',
-                                                border: '2px solid #e2e8f0',
+                                                border: '2px solid var(--border-color)',
                                                 borderRadius: '16px',
-                                                backgroundColor: 'white',
+                                                backgroundColor: 'var(--bg-card)',
                                                 cursor: 'pointer',
                                                 transition: 'all 0.2s',
                                                 textAlign: 'center',
@@ -434,7 +461,7 @@ const StudentDashboard = () => {
                                                 background: 'none',
                                                 border: 'none',
                                                 cursor: 'pointer',
-                                                color: '#64748b',
+                                                color: 'var(--text-muted)',
                                                 display: 'flex',
                                                 alignItems: 'center',
                                                 gap: '0.5rem',
@@ -604,34 +631,34 @@ const StudentDashboard = () => {
                                         style={{ display: 'none' }}
                                     />
                                 </div>
-                                <p style={{ marginTop: '1rem', color: '#64748b', fontSize: '0.875rem' }}>Click the camera icon to update your profile picture</p>
+                                <p style={{ marginTop: '1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>Click the camera icon to update your profile picture</p>
                             </div>
 
-                            <h3 style={{ borderBottom: '1px solid #eee', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>Personal Information</h3>
+                            <h3 style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem', color: 'var(--text-main)' }}>Personal Information</h3>
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
                                 <div>
-                                    <label style={{ display: 'block', color: '#64748b', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Full Name</label>
-                                    <div style={{ fontWeight: '500', fontSize: '1.1rem' }}>{currentUser.profile?.name || currentUser.displayName}</div>
+                                    <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Full Name</label>
+                                    <div style={{ fontWeight: '500', fontSize: '1.1rem', color: 'var(--text-main)' }}>{currentUser.profile?.name || currentUser.displayName}</div>
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', color: '#64748b', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Roll Number</label>
-                                    <div style={{ fontWeight: '500', fontSize: '1.1rem' }}>{currentUser.profile?.enrollment || 'N/A'}</div>
+                                    <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Roll Number</label>
+                                    <div style={{ fontWeight: '500', fontSize: '1.1rem', color: 'var(--text-main)' }}>{currentUser.profile?.enrollment || 'N/A'}</div>
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', color: '#64748b', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Branch</label>
-                                    <div style={{ fontWeight: '500', fontSize: '1.1rem' }}>{currentUser.profile?.branch || 'N/A'}</div>
+                                    <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Branch</label>
+                                    <div style={{ fontWeight: '500', fontSize: '1.1rem', color: 'var(--text-main)' }}>{currentUser.profile?.branch || 'N/A'}</div>
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', color: '#64748b', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Hostel Block</label>
-                                    <div style={{ fontWeight: '500', fontSize: '1.1rem' }}>{currentUser.profile?.allocatedHostel || 'Not Assigned'}</div>
+                                    <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Hostel Block</label>
+                                    <div style={{ fontWeight: '500', fontSize: '1.1rem', color: 'var(--text-main)' }}>{currentUser.profile?.allocatedHostel || 'Not Assigned'}</div>
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', color: '#64748b', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Room Number</label>
-                                    <div style={{ fontWeight: '500', fontSize: '1.1rem' }}>{currentUser.profile?.allocatedRoom || 'Not Assigned'}</div>
+                                    <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Room Number</label>
+                                    <div style={{ fontWeight: '500', fontSize: '1.1rem', color: 'var(--text-main)' }}>{currentUser.profile?.allocatedRoom || 'Not Assigned'}</div>
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', color: '#64748b', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Contact</label>
-                                    <div style={{ fontWeight: '500', fontSize: '1.1rem' }}>{currentUser.profile?.phone || 'N/A'}</div>
+                                    <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Contact</label>
+                                    <div style={{ fontWeight: '500', fontSize: '1.1rem', color: 'var(--text-main)' }}>{currentUser.profile?.phone || 'N/A'}</div>
                                 </div>
                             </div>
                         </div>
@@ -706,7 +733,7 @@ const StudentDashboard = () => {
                         return (
                             <div style={{ animation: 'fadeIn 0.5s' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                                    <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Planned Meals for {todayName}</h2>
+                                    <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-main)' }}>Planned Meals for {todayName}</h2>
                                     <span style={{ padding: '0.4rem 1rem', backgroundColor: '#fff1f1', color: 'var(--primary-red)', borderRadius: '999px', fontSize: '0.85rem', fontWeight: '600' }}>
                                         Current Menu
                                     </span>
@@ -719,18 +746,18 @@ const StudentDashboard = () => {
                                         { id: 'dinner', label: 'Dinner', dish: todayMenu.dinner, icon: '🥗' }
                                     ].map((meal) => (
                                         <div key={meal.id} style={{
-                                            backgroundColor: '#f8fafc',
+                                            backgroundColor: 'var(--bg-main)',
                                             borderRadius: '16px',
                                             padding: '1.5rem',
-                                            border: '1px solid #e2e8f0',
+                                            border: '1px solid var(--border-color)',
                                             display: 'flex',
                                             flexDirection: 'column',
                                             gap: '1rem'
                                         }}>
                                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                                 <div>
-                                                    <span style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{meal.label}</span>
-                                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginTop: '0.25rem' }}>{meal.dish}</h3>
+                                                    <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{meal.label}</span>
+                                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginTop: '0.25rem', color: 'var(--text-main)' }}>{meal.dish}</h3>
                                                 </div>
                                                 <span style={{ fontSize: '1.5rem' }}>{meal.icon}</span>
                                             </div>
@@ -740,25 +767,25 @@ const StudentDashboard = () => {
 
                                 <div style={{ marginBottom: '3rem' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                                        <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Special Dish Requests</h2>
-                                        <span style={{ color: '#64748b', fontSize: '0.9rem' }}>Vote for your favorites!</span>
+                                        <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-main)' }}>Special Dish Requests</h2>
+                                        <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Vote for your favorites!</span>
                                     </div>
 
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                         {specialRequests.map((req) => (
                                             <div key={req.id} style={{
-                                                backgroundColor: 'white',
+                                                backgroundColor: 'var(--bg-card)',
                                                 borderRadius: '12px',
                                                 padding: '1.25rem',
-                                                border: '1px solid #e2e8f0',
+                                                border: '1px solid var(--border-color)',
                                                 display: 'flex',
                                                 justifyContent: 'space-between',
                                                 alignItems: 'center',
                                                 boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
                                             }}>
                                                 <div>
-                                                    <h4 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '0.25rem' }}>{req.dish}</h4>
-                                                    <p style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Requested by {req.requestedBy}</p>
+                                                    <h4 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '0.25rem', color: 'var(--text-main)' }}>{req.dish}</h4>
+                                                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Requested by {req.requestedBy}</p>
                                                 </div>
 
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -791,8 +818,8 @@ const StudentDashboard = () => {
                                                                 onClick={() => handleVote(req.id, 'down')}
                                                                 style={{
                                                                     border: 'none',
-                                                                    background: req.userVote === 'down' ? '#fee2e2' : '#f8fafc',
-                                                                    color: req.userVote === 'down' ? '#991b1b' : '#64748b',
+                                                                    background: req.userVote === 'down' ? '#fee2e2' : 'var(--bg-main)',
+                                                                    color: req.userVote === 'down' ? '#991b1b' : 'var(--text-muted)',
                                                                     padding: '0.5rem 1rem',
                                                                     borderRadius: '8px',
                                                                     cursor: 'pointer',

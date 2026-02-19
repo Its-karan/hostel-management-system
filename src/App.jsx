@@ -10,6 +10,9 @@ import AdminDashboard from './components/AdminDashboard';
 import MessDashboard from './components/MessDashboard';
 import RoomAllocation from './components/RoomAllocation';
 
+import { ThemeProvider } from './context/ThemeContext';
+import ThemeToggle from './components/ThemeToggle';
+
 function App() {
   return (
     <Router>

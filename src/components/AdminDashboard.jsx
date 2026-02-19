@@ -222,14 +222,14 @@ const AdminDashboard = () => {
         <div style={{
             display: 'flex',
             minHeight: '100vh',
-            backgroundColor: '#f8fafc',
+            backgroundColor: 'var(--bg-main)',
             fontFamily: 'Inter, system-ui, sans-serif'
         }}>
             {/* Sidebar */}
             <aside style={{
                 width: '280px',
-                backgroundColor: 'white',
-                borderRight: '1px solid #e2e8f0',
+                backgroundColor: 'var(--bg-sidebar)',
+                borderRight: '1px solid var(--border-color)',
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'fixed',
@@ -237,10 +237,10 @@ const AdminDashboard = () => {
             }}>
                 <div style={{ padding: '2rem', borderBottom: '1px solid #f1f5f9' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                        <div style={{ padding: '0.5rem', backgroundColor: 'var(--primary-red)', borderRadius: '8px', color: 'white' }}>
+                        <div style={{ padding: '0.5rem', backgroundColor: 'var(--primary-red)', borderRadius: '8px', color: 'var(--text-white)' }}>
                             <Users size={24} />
                         </div>
-                        <h1 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--secondary-brown)' }}>Admin Portal</h1>
+                        <h1 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--text-main)' }}>Admin Portal</h1>
                     </div>
                 </div>
 
@@ -257,8 +257,8 @@ const AdminDashboard = () => {
                                     padding: '0.85rem 1rem',
                                     borderRadius: '10px',
                                     border: 'none',
-                                    backgroundColor: activeTab === item.id ? '#fff1f1' : 'transparent',
-                                    color: activeTab === item.id ? 'var(--primary-red)' : '#64748b',
+                                    backgroundColor: activeTab === item.id ? 'var(--bg-hover)' : 'transparent',
+                                    color: activeTab === item.id ? 'var(--primary-red)' : 'var(--text-muted)',
                                     cursor: 'pointer',
                                     fontWeight: activeTab === item.id ? '600' : '500',
                                     transition: 'all 0.2s',
@@ -299,31 +299,31 @@ const AdminDashboard = () => {
             <main style={{ marginLeft: '280px', flex: 1, padding: '2rem' }}>
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
                     <div>
-                        <h2 style={{ fontSize: '1.75rem', fontWeight: 'bold', color: '#1e293b' }}>
+                        <h2 style={{ fontSize: '1.75rem', fontWeight: 'bold', color: 'var(--text-main)' }}>
                             {menuItems.find(m => m.id === activeTab)?.label}
                         </h2>
-                        <p style={{ color: '#64748b', marginTop: '0.25rem' }}>Welcome back, Hemant Administrator</p>
+                        <p style={{ color: 'var(--text-muted)', marginTop: '0.25rem' }}>Welcome back, Hemant Administrator</p>
                     </div>
                     <div style={{ display: 'flex', gap: '1rem' }}>
-                        <button style={{ padding: '0.6rem', border: '1px solid #e2e8f0', borderRadius: '50%', backgroundColor: 'white', cursor: 'pointer' }}>
-                            <Bell size={20} color="#64748b" />
+                        <button style={{ padding: '0.6rem', border: '1px solid var(--border-color)', borderRadius: '50%', backgroundColor: 'var(--bg-card)', cursor: 'pointer' }}>
+                            <Bell size={20} color="var(--text-muted)" />
                         </button>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.4rem 1rem', backgroundColor: 'white', borderRadius: '999px', border: '1px solid #e2e8f0' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.4rem 1rem', backgroundColor: 'var(--bg-card)', borderRadius: '999px', border: '1px solid var(--border-color)' }}>
                             <UserCircle size={24} color="var(--primary-red)" />
-                            <span style={{ fontWeight: '600', fontSize: '0.9rem' }}>Admin Control</span>
+                            <span style={{ fontWeight: '600', fontSize: '0.9rem', color: 'var(--text-main)' }}>Admin Control</span>
                         </div>
                     </div>
                 </header>
 
-                <div style={{ backgroundColor: 'white', borderRadius: '20px', padding: '2rem', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+                <div style={{ backgroundColor: 'var(--bg-card)', borderRadius: '20px', padding: '2rem', border: '1px solid var(--border-color)', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
                     {activeTab === 'attendance' && (
                         <div>
                             {/* Attendance Controls */}
                             <div style={{ marginBottom: '2.5rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.5rem' }}>
                                     <div>
-                                        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Review Records</h3>
-                                        <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Slide to change viewing date</p>
+                                        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--text-main)' }}>Review Records</h3>
+                                        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Slide to change viewing date</p>
                                     </div>
                                     <div style={{ textAlign: 'right' }}>
                                         <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary-red)' }}>{currentReport.dateStr}</div>
@@ -356,9 +356,9 @@ const AdminDashboard = () => {
 
                             {/* Summary Stats */}
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                                <div style={{ padding: '1.5rem', backgroundColor: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                                    <div style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: '600', marginBottom: '0.5rem' }}>TOTAL STUDENTS</div>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{students.length}</div>
+                                <div style={{ padding: '1.5rem', backgroundColor: 'var(--bg-main)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+                                    <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: '600', marginBottom: '0.5rem' }}>TOTAL STUDENTS</div>
+                                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-main)' }}>{students.length}</div>
                                 </div>
                                 <div style={{ padding: '1.5rem', backgroundColor: '#f0fdf4', borderRadius: '12px', border: '1px solid #bbf7d0' }}>
                                     <div style={{ color: '#166534', fontSize: '0.85rem', fontWeight: '600', marginBottom: '0.5rem' }}>PRESENT</div>
@@ -371,29 +371,29 @@ const AdminDashboard = () => {
                             </div>
 
                             {/* Student List */}
-                            <div style={{ border: '1px solid #f1f5f9', borderRadius: '12px', overflow: 'hidden' }}>
+                            <div style={{ border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
                                 <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                                    <thead style={{ backgroundColor: '#f8fafc', borderBottom: '1px solid #f1f5f9' }}>
+                                    <thead style={{ backgroundColor: 'var(--bg-main)', borderBottom: '1px solid var(--border-color)' }}>
                                         <tr>
-                                            <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>Student</th>
-                                            <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>Room/Roll</th>
-                                            <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>Verification Pic</th>
-                                            <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>Entry Time</th>
-                                            <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>Exit Time</th>
+                                            <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Student</th>
+                                            <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Room/Roll</th>
+                                            <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Verification Pic</th>
+                                            <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Entry Time</th>
+                                            <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Exit Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {currentReport.records.map((record) => (
-                                            <tr key={record.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                                            <tr key={record.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                                                 <td style={{ padding: '1rem' }}>
                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                                         <img src={record.photo} alt="" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }} />
-                                                        <div style={{ fontWeight: '600', color: '#1e293b' }}>{record.name}</div>
+                                                        <div style={{ fontWeight: '600', color: 'var(--text-main)' }}>{record.name}</div>
                                                     </div>
                                                 </td>
                                                 <td style={{ padding: '1rem' }}>
-                                                    <div style={{ color: '#1e293b', fontSize: '0.9rem' }}>Room {record.room}</div>
-                                                    <div style={{ color: '#94a3b8', fontSize: '0.75rem' }}>{record.roll}</div>
+                                                    <div style={{ color: 'var(--text-main)', fontSize: '0.9rem' }}>Room {record.room}</div>
+                                                    <div style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>{record.roll}</div>
                                                 </td>
                                                 <td style={{ padding: '1rem' }}>
                                                     {record.verificationPic ? (
@@ -404,13 +404,13 @@ const AdminDashboard = () => {
                                                             </div>
                                                         </div>
                                                     ) : (
-                                                        <div style={{ width: '60px', height: '45px', borderRadius: '6px', backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed #cbd5e1' }}>
-                                                            <XCircle size={16} color="#94a3b8" />
+                                                        <div style={{ width: '60px', height: '45px', borderRadius: '6px', backgroundColor: 'var(--bg-main)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed var(--border-color)' }}>
+                                                            <XCircle size={16} color="var(--text-muted)" />
                                                         </div>
                                                     )}
                                                 </td>
-                                                <td style={{ padding: '1rem', color: '#64748b', fontWeight: '500' }}>{record.entryTime}</td>
-                                                <td style={{ padding: '1rem', color: '#64748b', fontWeight: '500' }}>{record.exitTime}</td>
+                                                <td style={{ padding: '1rem', color: 'var(--text-muted)', fontWeight: '500' }}>{record.entryTime}</td>
+                                                <td style={{ padding: '1rem', color: 'var(--text-muted)', fontWeight: '500' }}>{record.exitTime}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -423,8 +423,8 @@ const AdminDashboard = () => {
                         <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                                 <div>
-                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Student Complaints</h3>
-                                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Review and update complaint statuses</p>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--text-main)' }}>Student Complaints</h3>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Review and update complaint statuses</p>
                                 </div>
                                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                                     <span style={{ padding: '0.4rem 0.85rem', borderRadius: '999px', backgroundColor: '#fef2f2', color: '#991b1b', fontSize: '0.8rem', fontWeight: '600' }}>
@@ -440,7 +440,7 @@ const AdminDashboard = () => {
                             </div>
 
                             {adminComplaints.length === 0 ? (
-                                <div style={{ textAlign: 'center', padding: '4rem 0', color: '#94a3b8' }}>
+                                <div style={{ textAlign: 'center', padding: '4rem 0', color: 'var(--text-muted)' }}>
                                     <MessageSquare size={48} style={{ margin: '0 auto 1rem', opacity: 0.4 }} />
                                     <p style={{ fontWeight: '500' }}>No complaints submitted yet.</p>
                                     <p style={{ fontSize: '0.85rem' }}>Student complaints will appear here once submitted.</p>
@@ -448,29 +448,29 @@ const AdminDashboard = () => {
                             ) : (
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                     {adminComplaints.map(complaint => (
-                                        <div key={complaint.id} style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '12px', backgroundColor: '#fafafa' }}>
+                                        <div key={complaint.id} style={{ padding: '1.5rem', border: '1px solid var(--border-color)', borderRadius: '12px', backgroundColor: 'var(--bg-card)' }}>
                                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', flexWrap: 'wrap' }}>
                                                 <div style={{ flex: 1 }}>
                                                     <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
-                                                        <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--primary-red)', backgroundColor: '#fff1f1', padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
+                                                        <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--primary-red)', backgroundColor: 'var(--bg-hover)', padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
                                                             {complaint.category}
                                                         </span>
                                                         {complaint.hostel && (
-                                                            <span style={{ fontSize: '0.75rem', fontWeight: '600', color: '#64748b', backgroundColor: '#f1f5f9', padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
+                                                            <span style={{ fontSize: '0.75rem', fontWeight: '600', color: 'var(--text-muted)', backgroundColor: 'var(--bg-main)', padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
                                                                 🏠 {complaint.hostel}
                                                             </span>
                                                         )}
-                                                        <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{complaint.date}</span>
+                                                        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{complaint.date}</span>
                                                     </div>
-                                                    <p style={{ margin: '0.5rem 0', fontWeight: '500', color: '#1e293b' }}>{complaint.description}</p>
-                                                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>ID: {complaint.id}</span>
+                                                    <p style={{ margin: '0.5rem 0', fontWeight: '500', color: 'var(--text-main)' }}>{complaint.description}</p>
+                                                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>ID: {complaint.id}</span>
 
                                                     {complaint.proof && (
                                                         <div style={{ marginTop: '0.75rem', maxWidth: '300px' }}>
                                                             {complaint.proofType === 'video' ? (
-                                                                <video src={complaint.proof} controls style={{ width: '100%', maxHeight: '180px', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                                                <video src={complaint.proof} controls style={{ width: '100%', maxHeight: '180px', borderRadius: '8px', border: '1px solid var(--border-color)' }} />
                                                             ) : (
-                                                                <img src={complaint.proof} alt="Proof" style={{ width: '100%', maxHeight: '180px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                                                <img src={complaint.proof} alt="Proof" style={{ width: '100%', maxHeight: '180px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-color)' }} />
                                                             )}
                                                         </div>
                                                     )}
@@ -482,9 +482,9 @@ const AdminDashboard = () => {
                                                     {['Pending', 'In Progress', 'Resolved'].map(status => {
                                                         const isActive = complaint.status === status;
                                                         const colors = {
-                                                            'Pending': { bg: isActive ? '#fef2f2' : '#f8fafc', color: isActive ? '#991b1b' : '#64748b', border: isActive ? '#fecaca' : '#e2e8f0' },
-                                                            'In Progress': { bg: isActive ? '#fffbeb' : '#f8fafc', color: isActive ? '#92400e' : '#64748b', border: isActive ? '#fde68a' : '#e2e8f0' },
-                                                            'Resolved': { bg: isActive ? '#f0fdf4' : '#f8fafc', color: isActive ? '#166534' : '#64748b', border: isActive ? '#bbf7d0' : '#e2e8f0' },
+                                                            'Pending': { bg: isActive ? '#fef2f2' : 'var(--bg-main)', color: isActive ? '#991b1b' : 'var(--text-muted)', border: isActive ? '#fecaca' : 'var(--border-color)' },
+                                                            'In Progress': { bg: isActive ? '#fffbeb' : 'var(--bg-main)', color: isActive ? '#92400e' : 'var(--text-muted)', border: isActive ? '#fde68a' : 'var(--border-color)' },
+                                                            'Resolved': { bg: isActive ? '#f0fdf4' : 'var(--bg-main)', color: isActive ? '#166534' : 'var(--text-muted)', border: isActive ? '#bbf7d0' : 'var(--border-color)' },
                                                         };
                                                         const c = colors[status];
                                                         return (
@@ -644,8 +644,8 @@ const AdminDashboard = () => {
                         <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                                 <div>
-                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Room Allocation Requests</h3>
-                                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Review student documents and manage room assignments</p>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--text-main)' }}>Room Allocation Requests</h3>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Review student documents and manage room assignments</p>
                                 </div>
                                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                                     <span style={{ padding: '0.4rem 0.85rem', borderRadius: '999px', backgroundColor: '#fef2f2', color: '#991b1b', fontSize: '0.8rem', fontWeight: '600' }}>
@@ -658,32 +658,32 @@ const AdminDashboard = () => {
                             </div>
 
                             {allocationRequests.length === 0 ? (
-                                <div style={{ textAlign: 'center', padding: '4rem 0', color: '#94a3b8' }}>
+                                <div style={{ textAlign: 'center', padding: '4rem 0', color: 'var(--text-muted)' }}>
                                     <Hotel size={48} style={{ margin: '0 auto 1rem', opacity: 0.4 }} />
                                     <p style={{ fontWeight: '500' }}>No applications received yet.</p>
                                     <p style={{ fontSize: '0.85rem' }}>Room allocation requests will appear here once students apply.</p>
                                 </div>
                             ) : (
-                                <div style={{ border: '1px solid #f1f5f9', borderRadius: '12px', overflow: 'hidden' }}>
+                                <div style={{ border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
                                     <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                                        <thead style={{ backgroundColor: '#f8fafc', borderBottom: '1px solid #f1f5f9' }}>
+                                        <thead style={{ backgroundColor: 'var(--bg-main)', borderBottom: '1px solid var(--border-color)' }}>
                                             <tr>
-                                                <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>ID & Student</th>
-                                                <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>Documents</th>
-                                                <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>Status</th>
-                                                <th style={{ padding: '1rem', color: '#64748b', fontSize: '0.85rem', textTransform: 'uppercase' }}>Actions</th>
+                                                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>ID & Student</th>
+                                                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Documents</th>
+                                                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Status</th>
+                                                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {allocationRequests.map((req) => (
-                                                <tr key={req.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                                                <tr key={req.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
                                                     <td style={{ padding: '1rem' }}>
                                                         <div style={{ fontWeight: 'bold', color: 'var(--primary-red)', fontSize: '0.9rem' }}>{req.id}</div>
-                                                        <div style={{ fontWeight: '600', color: '#1e293b', marginTop: '0.2rem' }}>{req.name}</div>
+                                                        <div style={{ fontWeight: '600', color: 'var(--text-main)', marginTop: '0.2rem' }}>{req.name}</div>
                                                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', alignItems: 'center', marginTop: '0.2rem' }}>
-                                                            <div style={{ color: '#94a3b8', fontSize: '0.75rem' }}>E: {req.enrollment}</div>
+                                                            <div style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>E: {req.enrollment}</div>
                                                             {req.academicYear && (
-                                                                <div style={{ padding: '0.15rem 0.4rem', backgroundColor: '#f8fafc', borderRadius: '4px', border: '1px solid #e2e8f0', fontSize: '0.65rem', fontWeight: '700', color: '#64748b' }}>
+                                                                <div style={{ padding: '0.15rem 0.4rem', backgroundColor: 'var(--bg-main)', borderRadius: '4px', border: '1px solid var(--border-color)', fontSize: '0.65rem', fontWeight: '700', color: 'var(--text-muted)' }}>
                                                                     {req.academicYear}
                                                                 </div>
                                                             )}
@@ -693,7 +693,7 @@ const AdminDashboard = () => {
                                                                 </div>
                                                             )}
                                                             {req.phone && (
-                                                                <div style={{ color: '#64748b', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                                                                <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
                                                                     📞 {req.phone}
                                                                 </div>
                                                             )}
@@ -716,9 +716,9 @@ const AdminDashboard = () => {
                                                                         padding: '0.3rem 0.4rem',
                                                                         fontSize: '0.65rem',
                                                                         borderRadius: '4px',
-                                                                        border: '1px solid #e2e8f0',
-                                                                        backgroundColor: req[doc.key] ? (doc.key === 'profilePhoto' ? '#fff1f1' : 'white') : '#f1f5f9',
-                                                                        color: req[doc.key] ? (doc.key === 'profilePhoto' ? 'var(--primary-red)' : '#1e293b') : '#94a3b8',
+                                                                        border: '1px solid var(--border-color)',
+                                                                        backgroundColor: req[doc.key] ? (doc.key === 'profilePhoto' ? 'var(--bg-hover)' : 'var(--bg-card)') : 'var(--bg-main)',
+                                                                        color: req[doc.key] ? (doc.key === 'profilePhoto' ? 'var(--primary-red)' : 'var(--text-main)') : 'var(--text-muted)',
                                                                         fontWeight: doc.key === 'profilePhoto' ? '700' : '500',
                                                                         cursor: req[doc.key] ? 'pointer' : 'not-allowed',
                                                                         display: 'flex',
@@ -774,17 +774,17 @@ const AdminDashboard = () => {
 
                     {activeTab === 'profile' && (
                         <div style={{ maxWidth: '600px' }}>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.4rem' }}>Admin Profile</h3>
-                            <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: '2rem' }}>Administrator account details.</p>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.4rem', color: 'var(--text-main)' }}>Admin Profile</h3>
+                            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Administrator account details.</p>
 
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem', backgroundColor: '#fff1f1', borderRadius: '16px', border: '1px solid #fecaca', marginBottom: '2rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem', backgroundColor: 'var(--bg-hover)', borderRadius: '16px', border: '1px solid #fecaca', marginBottom: '2rem' }}>
                                 <div style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: 'var(--primary-red)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                                     <UserCircle size={48} color="white" />
                                 </div>
                                 <div>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#1e293b' }}>Hemant</div>
-                                    <div style={{ fontSize: '0.95rem', color: '#64748b', marginTop: '0.2rem' }}>Hostel Administrator</div>
-                                    <div style={{ marginTop: '0.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.3rem 0.75rem', backgroundColor: 'white', borderRadius: '999px', border: '1px solid #fecaca', fontSize: '0.85rem', fontWeight: '600', color: 'var(--primary-red)' }}>
+                                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-main)' }}>Hemant</div>
+                                    <div style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Hostel Administrator</div>
+                                    <div style={{ marginTop: '0.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.3rem 0.75rem', backgroundColor: 'var(--bg-card)', borderRadius: '999px', border: '1px solid #fecaca', fontSize: '0.85rem', fontWeight: '600', color: 'var(--primary-red)' }}>
                                         🏠 Hostel 8
                                     </div>
                                 </div>
